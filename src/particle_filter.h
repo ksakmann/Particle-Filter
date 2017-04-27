@@ -11,6 +11,8 @@
 
 #include "helper_functions.h"
 
+extern std::default_random_engine gen;
+
 struct Particle {
 
 	int id;

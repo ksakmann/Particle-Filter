@@ -15,7 +15,7 @@
 
 using namespace std;
 
-
+default_random_engine gen;
 
 int main() {
 	
@@ -43,7 +43,7 @@ int main() {
 	double sigma_landmark [2] = {0.3, 0.3}; // Landmark measurement uncertainty [x [m], y [m]]
 
 	// noise generation
-	default_random_engine gen;
+	//default_random_engine gen;
 	normal_distribution<double> N_x_init(0, sigma_pos[0]);
 	normal_distribution<double> N_y_init(0, sigma_pos[1]);
 	normal_distribution<double> N_theta_init(0, sigma_pos[2]);
