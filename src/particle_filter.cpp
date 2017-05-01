@@ -13,6 +13,9 @@
 #include "particle_filter.h"
 
 
+std::default_random_engine gen;
+
+
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	//   Sets the number of particles. Initializes all particles to first position (based on estimates of 
 	//   x, y, theta and their uncertainties from GPS) and all weights to 1 (see main)
@@ -82,11 +85,18 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	return;
 }
 
-std::vector<LandmarkObs> ParticleFilter::dataAssociation(const std::vector<LandmarkObs> predicted, const std::vector<LandmarkObs>& observations) {
+void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations) {
 	// TODO: Find the predicted measurement that is closest to each observed measurement and assign the 
 	// observed measurement to this particular landmark.
 	// NOTE: this method will NOT be called by the grading code. But you will probably find it useful to 
 	// implement this method and use it as a helper during the updateWeights phase.
+
+}
+
+
+std::vector<LandmarkObs> associate_data(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations) {
+	// TODO: Find the predicted measurement that is closest to each observed measurement and assign the 
+	// observed measurement to this particular landmark.
 	
 	std::vector<LandmarkObs> associated_landmarks;
 	LandmarkObs closest;
@@ -104,13 +114,10 @@ std::vector<LandmarkObs> ParticleFilter::dataAssociation(const std::vector<Landm
 		}
 
 		associated_landmarks.push_back(closest);
-
 	}
-
+	
 	return associated_landmarks;
-
 }
-
 
 void ParticleFilter::updateWeights(double sensor_range, double std_landmark[], std::vector<LandmarkObs> observations, Map map_landmarks) {
 	//  Updates the weights of each particle using a mult-variate Gaussian distribution. 
@@ -152,7 +159,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[], s
 
 		// then associate the nearest landmark to every observation of the particle 
 		std::vector<LandmarkObs> associated_landmarks;
-		associated_landmarks = dataAssociation(predicted, transformed_observations);
+		associated_landmarks = associate_data(predicted, transformed_observations);
 
 		double probability = 1;		
 		for (int j=0; j < associated_landmarks.size(); ++j){
