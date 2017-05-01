@@ -9,9 +9,8 @@
 #ifndef PARTICLE_FILTER_H_
 #define PARTICLE_FILTER_H_
 
+#include <random>
 #include "helper_functions.h"
-
-extern std::default_random_engine gen;
 
 struct Particle {
 
@@ -28,14 +27,15 @@ class ParticleFilter {
 	
 	// Number of particles to draw
 	int num_particles; 
-	
-	
-	
+			
 	// Flag, if filter is initialized
 	bool is_initialized;
 	
 	// Vector of weights of all particles
 	std::vector<double> weights;
+
+    // TODO: Not an elegant solution. There should be only one RNG. As we have only one particle filter, this is OK for now.
+    std::default_random_engine gen;
 	
 public:
 	
@@ -44,7 +44,7 @@ public:
 
 	// Constructor
 	// @param M Number of particles
-	ParticleFilter() : num_particles(0), is_initialized(false) {}
+	ParticleFilter() : num_particles(0), is_initialized(false) {gen.seed(2);}
 
 	// Destructor
 	~ParticleFilter() {}
@@ -77,7 +77,7 @@ public:
 	 * @param predicted Vector of predicted landmark observations
 	 * @param observations Vector of landmark observations
 	 */
-	void dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations);
+	std::vector<LandmarkObs> dataAssociation(const std::vector<LandmarkObs> predicted, const std::vector<LandmarkObs>& observations);
 	
 	/**
 	 * updateWeights Updates the weights for each particle based on the likelihood of the 
