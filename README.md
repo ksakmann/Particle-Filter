@@ -3,7 +3,7 @@
 <p align="center">
   <b>Localization by observed landmarks</b><br>
   <br><br>
-  <img src="https://github.com/ksakmann/Particle-Filter/images/localization.gif">
+  <img src="https://github.com/ksakmann/Particle-Filter/blob/master/images/localization.gif">
 </p>
 Shown above is the position of a vehicle (red), a set of known landmarks (yellow) on a map as well as the position and orientation of the vehicle determined by a particle filter (blue). Only landmarks within a certain range are measured by the vehicle sensors. 
 Visible landmarks fall inside circle drawn around the current position.
