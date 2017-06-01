@@ -1,5 +1,15 @@
+# Particle Filter
+
+<p align="center">
+  <b>Localization by observed landmarks</b><br>
+  <br><br>
+  <img src="https://github.com/ksakmann/Particle-Filter/images/localization.gif">
+</p>
+Shown above is the position of a vehicle (red), a set of known landmarks (yellow) on a map as well as the position and orientation of the vehicle determined by a particle filter (blue). Only landmarks within a certain range are measured by the vehicle sensors. 
+Visible landmarks fall inside circle drawn around the current position.
+
 # Overview
-This repository contains all the code needed to complete the final project for the Localization course in Udacity's Self-Driving Car Nanodegree.
+This repository contains code for the particle filter problem of Udacity's Self-Driving Car Nanodegree.
 
 #### Submission
 All you will submit is your completed version of `particle_filter.cpp`, which is located in the `src` directory. You should probably do a `git pull` before submitting to verify that your project passes the most up-to-date version of the grading code (there are some parameters in `src/main.cpp` which govern the requirements on accuracy and run time.)

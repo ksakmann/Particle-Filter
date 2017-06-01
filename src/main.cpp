@@ -126,6 +126,13 @@ int main() {
 		}
 		double *avg_error = getError(gt[i].x, gt[i].y, gt[i].theta, best_particle.x, best_particle.y, best_particle.theta);
 
+		// for plotting the results of the filter
+		std::ofstream dataFile;
+		dataFile.open("best_particle.dat", std::ios::app);
+		dataFile << best_particle.x << " " << best_particle.y << " " << best_particle.theta << "\n";
+		dataFile.close();
+		
+
 		for (int j = 0; j < 3; ++j) {
 			total_error[j] += avg_error[j];
 			cum_mean_error[j] = total_error[j] / (double)(i + 1);
